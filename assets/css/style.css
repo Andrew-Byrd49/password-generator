@@ -15,6 +15,7 @@ body,
 body {
   font-family: sans-serif;
   background-color: #f9fbfd;
+  background-image: url(../images/film-damage-grain\ \(1\).gif)
 }
 
 .wrapper {
@@ -86,6 +87,10 @@ header {
   padding: 14px 34px;
   text-align: center;
   cursor: pointer;
+}
+
+.btn:hover {
+  background-image: url(../images/color-spiral.gif);
 }
 
 button[disabled] {

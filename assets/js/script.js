@@ -8,7 +8,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Prompt Variables
@@ -30,32 +29,35 @@ var finalPool;
 function generatePassword() {
   finalPool = [];
   password = "";
-  passwordLgth = prompt("Set a length for your password. Your password can be anywhere between 8 and 128 characters long");
+  passwordLgth = prompt(
+    "Set a length for your password. Your password can be anywhere between 8 and 128 characters long"
+  );
   passwordLgthNum = parseInt(passwordLgth);
   checkPasswordLgth();
   pullCharacters();
   randomizeChar();
+
+  return password;
 }
 
 // Checking if password meets length conditions
 function checkPasswordLgth() {
   if (passwordLgthNum >= 8 && passwordLgthNum <= 128) {
-    return passwordLgth();
-
-  } else if (passwordLgthNum < 8 && passwordLgthNum > 128) {
-    alert("Please input a value between 8 and 128!");
-    return passwordLgth();
-  }
-
-  else {
-    alert("Please input a NUMERIC value between 8 and 128!");
-    return passwordLgth();
+    return passwordLgthNum;
+  } else if (passwordLgthNum < 8) {
+    alert("INVALID; Please input a value between 8 and 128!");
+    return generatePassword();
+  } else if (passwordLgthNum > 128) {
+    alert("INVALID; Please input a value between 8 and 128!");
+    return generatePassword();
+  } else {
+    alert("INVALID; Please input a NUMERIC value between 8 and 128!");
+    return generatePassword();
   }
 }
 
 // Set to grab from the pool of characters and return to user
 function pullCharacters() {
-
   specialChar = confirm("Would you like to include special characters?");
   if (specialChar) {
     finalPool = finalPool.concat(specialPool);
@@ -80,12 +82,12 @@ function pullCharacters() {
     alert("You must choose at least one criteria for your password!");
     pullCharacters();
   }
+  console.log(finalPool);
 }
 
 function randomizeChar() {
-
   for (i = 0; i < passwordLgthNum; i++) {
-    var random = finalPool[Math.floor(math.random() * finalPool.length)];
+    var random = finalPool[Math.floor(Math.random() * finalPool.length)];
     password = password.concat(random);
   }
 }
